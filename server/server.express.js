@@ -1,9 +1,9 @@
 // /server/server.express.js
 import express from 'express';
-//import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 //import cookieParser from 'cookie-parser';
 //import session from 'express-session';
-//import { crud } from "./server.crud.js";
+import { crud } from "./server.crud.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -14,11 +14,11 @@ const port = process.env.PORT;
 // Static server
 app.use(express.static('practica', { setHeaders }));
 // for parsing application/json
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
 // for parsing client-side cookies
 //app.use(cookieParser())
 // for parsing application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 // for session storage
 //app.use(session(DEFAULT_SESSION))
 
@@ -105,7 +105,7 @@ app.listen(port, async () => {
   console.log(`Shopping List listening on port ${port}`);
 })
 
-/*
+
 // Middlewares
 function requireAuth(req, res, next) {
   // Simulation of authentication (OAuth2)
@@ -117,6 +117,7 @@ function requireAuth(req, res, next) {
   }
 }
 
+/*
 function setHeaders(res, path) {
   // "name" and "value"
   res.cookie('sessionId', '123456', {
